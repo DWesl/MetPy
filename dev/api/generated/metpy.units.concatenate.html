@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>concatenate &mdash; MetPy 0.9</title>
+  <title>concatenate &mdash; MetPy 0.10</title>
   
 
   
@@ -43,7 +43,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="MetPy 0.9" href="../../index.html"/>
+    <link rel="top" title="MetPy 0.10" href="../../index.html"/>
         <link rel="up" title="units" href="metpy.units.html"/>
         <link rel="next" title="diff" href="metpy.units.diff.html"/>
         <link rel="prev" title="check_units" href="metpy.units.check_units.html"/> 
@@ -81,7 +81,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.9</option>
+                      <option value=''>0.10</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -147,6 +147,7 @@
 <li class="toctree-l2"><a class="reference internal" href="metpy.gridding.html">gridding</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">MetPy Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gempak.html">GEMPAK Conversion Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../infrastructureguide.html">Infrastructure Guide</a></li>
@@ -229,7 +230,7 @@
 <dt id="metpy.units.concatenate">
 <code class="descclassname">metpy.units.</code><code class="descname">concatenate</code><span class="sig-paren">(</span><em>arrs</em>, <em>axis=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/metpy/units.html#concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#metpy.units.concatenate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Concatenate multiple values into a new unitized object.</p>
-<p>This is essentially a unit-aware version of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html#numpy.concatenate" title="(in NumPy v1.15)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.concatenate</span></code></a>. All items
+<p>This is essentially a unit-aware version of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html#numpy.concatenate" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.concatenate</span></code></a>. All items
 must be able to be converted to the same units. If an item has no units, it will be given
 those of the rest of the collection, without conversion. The first units found in the
 arguments is used as the final output units.</p>
@@ -274,8 +275,8 @@ arguments is used as the final output units.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, MetPy Developers.
-      Last updated on Jan 06, 2019 at 02:18:28.
+        &copy; Copyright 2019, MetPy Developers.
+      Last updated on Mar 21, 2019 at 16:00:53.
 
     </p>
   </div>
@@ -312,7 +313,7 @@ arguments is used as the final output units.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.9.1+87.gcee9d4d',
+            VERSION:'0.10.0+13.gbf1b701',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

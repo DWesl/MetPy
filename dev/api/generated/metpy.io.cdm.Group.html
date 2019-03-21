@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Group &mdash; MetPy 0.9</title>
+  <title>Group &mdash; MetPy 0.10</title>
   
 
   
@@ -43,7 +43,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="MetPy 0.9" href="../../index.html"/>
+    <link rel="top" title="MetPy 0.10" href="../../index.html"/>
         <link rel="up" title="cdm" href="metpy.io.cdm.html"/>
         <link rel="next" title="OrderedDict" href="metpy.io.cdm.OrderedDict.html"/>
         <link rel="prev" title="Dimension" href="metpy.io.cdm.Dimension.html"/> 
@@ -81,7 +81,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.9</option>
+                      <option value=''>0.10</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -144,6 +144,7 @@
 <li class="toctree-l2"><a class="reference internal" href="metpy.gridding.html">gridding</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">MetPy Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gempak.html">GEMPAK Conversion Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../infrastructureguide.html">Infrastructure Guide</a></li>
@@ -304,12 +305,12 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name of the new Variable.</li>
-<li><strong>datatype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v1.15)"><em>numpy.dtype</em></a>) – A valid Numpy dtype that describes the layout of the data within the Variable.</li>
+<li><strong>datatype</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dtype.html#numpy.dtype" title="(in NumPy v1.16)"><em>numpy.dtype</em></a>) – A valid Numpy dtype that describes the layout of the data within the Variable.</li>
 <li><strong>dimensions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – The dimensions of this Variable. Defaults to empty, which implies a scalar
 variable.</li>
 <li><strong>fill_value</strong> (<em>number</em><em>, </em><em>optional</em>) – A scalar value that is used to fill the created storage. Defaults to None, which
 performs no filling, leaving the storage uninitialized.</li>
-<li><strong>wrap_array</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a><em>, </em><em>optional</em>) – Instead of creating an array, the Variable instance will assume ownership of the
+<li><strong>wrap_array</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><em>numpy.ndarray</em></a><em>, </em><em>optional</em>) – Instead of creating an array, the Variable instance will assume ownership of the
 passed in array as its data storage. This is a performance optimization to avoid
 copying large data blocks. Defaults to None, which means a new array will be
 created.</li>
@@ -363,8 +364,8 @@ created.</li>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, MetPy Developers.
-      Last updated on Jan 06, 2019 at 02:18:28.
+        &copy; Copyright 2019, MetPy Developers.
+      Last updated on Mar 21, 2019 at 16:00:53.
 
     </p>
   </div>
@@ -401,7 +402,7 @@ created.</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.9.1+87.gcee9d4d',
+            VERSION:'0.10.0+13.gbf1b701',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

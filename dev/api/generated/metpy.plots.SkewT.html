@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SkewT &mdash; MetPy 0.9</title>
+  <title>SkewT &mdash; MetPy 0.10</title>
   
 
   
@@ -43,7 +43,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="MetPy 0.9" href="../../index.html"/>
+    <link rel="top" title="MetPy 0.10" href="../../index.html"/>
         <link rel="up" title="plots" href="metpy.plots.html"/>
         <link rel="next" title="StationPlot" href="metpy.plots.StationPlot.html"/>
         <link rel="prev" title="Plot2D" href="metpy.plots.Plot2D.html"/> 
@@ -81,7 +81,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.9</option>
+                      <option value=''>0.10</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -153,6 +153,7 @@
 <li class="toctree-l2"><a class="reference internal" href="metpy.gridding.html">gridding</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">MetPy Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gempak.html">GEMPAK Conversion Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../infrastructureguide.html">Infrastructure Guide</a></li>
@@ -248,7 +249,7 @@ plot functions (e.g. <em class="xref py py-obj">axvline</em>)</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -260,16 +261,16 @@ plot functions (e.g. <em class="xref py py-obj">axvline</em>)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fig</strong> (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.2)"><em>matplotlib.figure.Figure</em></a><em>, </em><em>optional</em>) – Source figure to use for plotting. If none is given, a new
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance will be created.</li>
+<li><strong>fig</strong> (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.3)"><em>matplotlib.figure.Figure</em></a><em>, </em><em>optional</em>) – Source figure to use for plotting. If none is given, a new
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance will be created.</li>
 <li><strong>rotation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Controls the rotation of temperature relative to horizontal. Given
 in degrees counterclockwise from x-axis. Defaults to 30 degrees.</li>
-<li><strong>subplot</strong> (tuple[int, int, int] or <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a> instance, optional) – Controls the size/position of the created subplot. This allows creating
+<li><strong>subplot</strong> (tuple[int, int, int] or <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a> instance, optional) – Controls the size/position of the created subplot. This allows creating
 the skewT as part of a collection of subplots. If subplot is a tuple, it
 should conform to the specification used for
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.add_subplot" title="(in Matplotlib v3.0.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">matplotlib.figure.Figure.add_subplot()</span></code></a>. The
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a>
-can be created by using <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.GridSpec.html#matplotlib.gridspec.GridSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.GridSpec</span></code></a>.</li>
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.add_subplot" title="(in Matplotlib v3.0.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">matplotlib.figure.Figure.add_subplot()</span></code></a>. The
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a>
+can be created by using <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.GridSpec.html#matplotlib.gridspec.GridSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.GridSpec</span></code></a>.</li>
 <li><strong>rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em><em>, </em><em>optional</em>) – Rectangle (left, bottom, width, height) in which to place the axes. This
 allows the user to place the axes at an arbitrary point on the figure.</li>
 </ul>
@@ -323,16 +324,16 @@ allows the user to place the axes at an arbitrary point on the figure.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fig</strong> (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.2)"><em>matplotlib.figure.Figure</em></a><em>, </em><em>optional</em>) – Source figure to use for plotting. If none is given, a new
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance will be created.</li>
+<li><strong>fig</strong> (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.3)"><em>matplotlib.figure.Figure</em></a><em>, </em><em>optional</em>) – Source figure to use for plotting. If none is given, a new
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance will be created.</li>
 <li><strong>rotation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Controls the rotation of temperature relative to horizontal. Given
 in degrees counterclockwise from x-axis. Defaults to 30 degrees.</li>
-<li><strong>subplot</strong> (tuple[int, int, int] or <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a> instance, optional) – Controls the size/position of the created subplot. This allows creating
+<li><strong>subplot</strong> (tuple[int, int, int] or <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a> instance, optional) – Controls the size/position of the created subplot. This allows creating
 the skewT as part of a collection of subplots. If subplot is a tuple, it
 should conform to the specification used for
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.add_subplot" title="(in Matplotlib v3.0.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">matplotlib.figure.Figure.add_subplot()</span></code></a>. The
-<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a>
-can be created by using <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.GridSpec.html#matplotlib.gridspec.GridSpec" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.GridSpec</span></code></a>.</li>
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.add_subplot" title="(in Matplotlib v3.0.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">matplotlib.figure.Figure.add_subplot()</span></code></a>. The
+<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.SubplotSpec.html#matplotlib.gridspec.SubplotSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.SubplotSpec</span></code></a>
+can be created by using <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.gridspec.GridSpec.html#matplotlib.gridspec.GridSpec" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.gridspec.GridSpec</span></code></a>.</li>
 <li><strong>rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>]</em><em>, </em><em>optional</em>) – Rectangle (left, bottom, width, height) in which to place the axes. This
 allows the user to place the axes at an arbitrary point on the figure.</li>
 </ul>
@@ -356,8 +357,8 @@ sets some appropriate ticking and plot ranges.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>p</strong> (<em>array_like</em>) – pressure values</li>
 <li><strong>t</strong> (<em>array_like</em>) – temperature values, can also be used for things like dew point</li>
-<li><strong>args</strong> – Other positional arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">semilogy()</span></code></a></li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">semilogy()</span></code></a></li>
+<li><strong>args</strong> – Other positional arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">semilogy()</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">semilogy()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -368,7 +369,7 @@ sets some appropriate ticking and plot ranges.</p>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.semilogy()</span></code></a></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.semilogy.html#matplotlib.pyplot.semilogy" title="(in Matplotlib v3.0.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.semilogy()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -395,7 +396,7 @@ wind barbs in the x-direction. Defaults to 0.1.</li>
 <li><strong>y_clip_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – Space, in normalized axes coordinates, to leave above/below plot
 before clipping wind barbs in the y-direction. Defaults to 0.08.</li>
 <li><strong>plot_units</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">pint.unit</span></code>) – Units to plot in (performing conversion if necessary). Defaults to given units.</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs" title="(in Matplotlib v3.0.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">barbs()</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs" title="(in Matplotlib v3.0.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">barbs()</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -406,7 +407,7 @@ before clipping wind barbs in the y-direction. Defaults to 0.08.</li>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs" title="(in Matplotlib v3.0.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.barbs()</span></code></a></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs" title="(in Matplotlib v3.0.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.barbs()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -428,7 +429,7 @@ the plot.</li>
 <li><strong>p</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Pressure values to be included in the dry adiabats. If not
 specified, they will be linearly distributed across the current
 plotted pressure range.</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -441,7 +442,7 @@ plotted pressure range.</li>
 <p class="first admonition-title">See also</p>
 <p class="last"><code class="xref py py-func docutils literal notranslate"><span class="pre">dry_lapse()</span></code>
 <a class="reference internal" href="#metpy.plots.SkewT.plot_moist_adiabats" title="metpy.plots.SkewT.plot_moist_adiabats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot_moist_adiabats()</span></code></a>
-<a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
+<a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -462,7 +463,7 @@ values are used.</li>
 <li><strong>p</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Pressure values to be included in the isohumes. If not
 specified, they will be linearly distributed across the current
 plotted pressure range up to 600 mb.</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -473,7 +474,7 @@ plotted pressure range up to 600 mb.</li>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -496,7 +497,7 @@ the plot.</li>
 <li><strong>p</strong> (<em>array_like</em><em>, </em><em>optional</em>) – Pressure values to be included in the moist adiabats. If not
 specified, they will be linearly distributed across the current
 plotted pressure range.</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
@@ -509,7 +510,7 @@ plotted pressure range.</li>
 <p class="first admonition-title">See also</p>
 <p class="last"><code class="xref py py-func docutils literal notranslate"><span class="pre">moist_lapse()</span></code>
 <a class="reference internal" href="#metpy.plots.SkewT.plot_dry_adiabats" title="metpy.plots.SkewT.plot_dry_adiabats"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot_dry_adiabats()</span></code></a>
-<a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
+<a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.LineCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -529,18 +530,18 @@ or all areas shaded.</p>
 <li><strong>x2</strong> (<em>array_like</em>) – 1-dimensional array of numeric x-values</li>
 <li><strong>which</strong> (<em>string</em>) – Specifies if <em class="xref py py-obj">positive</em>, <em class="xref py py-obj">negative</em>, or <em class="xref py py-obj">both</em> areas are being shaded.
 Will be overridden by where.</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
 </td>
 </tr>
 </tbody>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
 </div>
 </dd></dl>
 
@@ -558,18 +559,18 @@ buoyancy.</p>
 <li><strong>p</strong> (<em>array_like</em>) – Pressure values</li>
 <li><strong>t</strong> (<em>array_like</em>) – Temperature values</li>
 <li><strong>t_parcel</strong> (<em>array_like</em>) – Parcel path temperature values</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
 </td>
 </tr>
 </tbody>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
 </div>
 </dd></dl>
 
@@ -587,18 +588,18 @@ buoyancy.</p>
 <li><strong>p</strong> (<em>array_like</em>) – Pressure values</li>
 <li><strong>t</strong> (<em>array_like</em>) – Temperature values</li>
 <li><strong>t_parcel</strong> (<em>array_like</em>) – Parcel path temperature values</li>
-<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
+<li><strong>kwargs</strong> – Other keyword arguments to pass to <a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a></p>
 </td>
 </tr>
 </tbody>
 </table>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
+<p class="last"><a class="reference external" href="https://matplotlib.org/api/collections_api.html#matplotlib.collections.PolyCollection" title="(in Matplotlib v3.0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.PolyCollection</span></code></a>, <code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.fill_betweenx()</span></code></p>
 </div>
 </dd></dl>
 
@@ -651,8 +652,8 @@ buoyancy.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, MetPy Developers.
-      Last updated on Jan 06, 2019 at 02:18:28.
+        &copy; Copyright 2019, MetPy Developers.
+      Last updated on Mar 21, 2019 at 16:00:53.
 
     </p>
   </div>
@@ -689,7 +690,7 @@ buoyancy.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.9.1+87.gcee9d4d',
+            VERSION:'0.10.0+13.gbf1b701',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

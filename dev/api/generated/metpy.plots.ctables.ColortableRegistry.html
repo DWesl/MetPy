@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ColortableRegistry &mdash; MetPy 0.9</title>
+  <title>ColortableRegistry &mdash; MetPy 0.10</title>
   
 
   
@@ -43,7 +43,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="MetPy 0.9" href="../../index.html"/>
+    <link rel="top" title="MetPy 0.10" href="../../index.html"/>
         <link rel="up" title="ctables" href="metpy.plots.ctables.html"/>
         <link rel="next" title="Exporter" href="metpy.plots.ctables.Exporter.html"/>
         <link rel="prev" title="read_colortable" href="metpy.plots.ctables.read_colortable.html"/> 
@@ -81,7 +81,7 @@
                 
                   <div class="version-dropdown">
                     <select class="version-list" id="version-list">
-                      <option value=''>0.9</option>
+                      <option value=''>0.10</option>
                       
                         
                           <option value="../latest">latest</option>
@@ -140,6 +140,7 @@
 <li class="toctree-l2"><a class="reference internal" href="metpy.gridding.html">gridding</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">MetPy Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../gempak.html">GEMPAK Conversion Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributors Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../infrastructureguide.html">Infrastructure Guide</a></li>
@@ -337,7 +338,7 @@ matplotlib’s Normalize instances to go with the colortable.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The name under which the color table will be stored</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The color table corresponding to <em class="xref py py-obj">name</em></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The color table corresponding to <em class="xref py py-obj">name</em></td>
 </tr>
 </tbody>
 </table>
@@ -347,7 +348,7 @@ matplotlib’s Normalize instances to go with the colortable.</p>
 <dt id="metpy.plots.ctables.ColortableRegistry.get_with_boundaries">
 <code class="descname">get_with_boundaries</code><span class="sig-paren">(</span><em>name</em>, <em>boundaries</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/metpy/plots/ctables.html#ColortableRegistry.get_with_boundaries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#metpy.plots.ctables.ColortableRegistry.get_with_boundaries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a color table from the registry with a corresponding norm.</p>
-<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">boundaries</em>.</p>
+<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">boundaries</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -358,7 +359,7 @@ matplotlib’s Normalize instances to go with the colortable.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">boundaries</em>, and the color table itself.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">boundaries</em>, and the color table itself.</p>
 </td>
 </tr>
 </tbody>
@@ -369,7 +370,7 @@ matplotlib’s Normalize instances to go with the colortable.</p>
 <dt id="metpy.plots.ctables.ColortableRegistry.get_with_range">
 <code class="descname">get_with_range</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>end</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/metpy/plots/ctables.html#ColortableRegistry.get_with_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#metpy.plots.ctables.ColortableRegistry.get_with_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a color table from the registry with a corresponding norm.</p>
-<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">start</em>, <em class="xref py py-obj">end</em>, and
+<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">start</em>, <em class="xref py py-obj">end</em>, and
 the number of colors, based on the color table obtained from <em class="xref py py-obj">name</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -382,7 +383,7 @@ the number of colors, based on the color table obtained from <em class="xref py 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">start</em> and <em class="xref py py-obj">end</em> with the number of colors
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">start</em> and <em class="xref py py-obj">end</em> with the number of colors
 from the number of entries matching the color table, and the color table itself.</p>
 </td>
 </tr>
@@ -394,7 +395,7 @@ from the number of entries matching the color table, and the color table itself.
 <dt id="metpy.plots.ctables.ColortableRegistry.get_with_steps">
 <code class="descname">get_with_steps</code><span class="sig-paren">(</span><em>name</em>, <em>start</em>, <em>step</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/metpy/plots/ctables.html#ColortableRegistry.get_with_steps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#metpy.plots.ctables.ColortableRegistry.get_with_steps" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a color table from the registry with a corresponding norm.</p>
-<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">start</em>, <em class="xref py py-obj">step</em>, and
+<p>Builds a <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a> using <em class="xref py py-obj">start</em>, <em class="xref py py-obj">step</em>, and
 the number of colors, based on the color table obtained from <em class="xref py py-obj">name</em>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -407,7 +408,7 @@ the number of colors, based on the color table obtained from <em class="xref py 
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.2)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">start</em> and <em class="xref py py-obj">step</em> with the number of colors
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.BoundaryNorm.html#matplotlib.colors.BoundaryNorm" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.BoundaryNorm</span></code></a>, <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.ListedColormap.html#matplotlib.colors.ListedColormap" title="(in Matplotlib v3.0.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code></a> – The boundary norm based on <em class="xref py py-obj">start</em> and <em class="xref py py-obj">step</em> with the number of colors
 from the number of entries matching the color table, and the color table itself.</p>
 </td>
 </tr>
@@ -513,8 +514,8 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, MetPy Developers.
-      Last updated on Jan 06, 2019 at 02:18:28.
+        &copy; Copyright 2019, MetPy Developers.
+      Last updated on Mar 21, 2019 at 16:00:53.
 
     </p>
   </div>
@@ -551,7 +552,7 @@ In either case, this is followed by: for k in F:  D[k] = F[k]</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0.9.1+87.gcee9d4d',
+            VERSION:'0.10.0+13.gbf1b701',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
