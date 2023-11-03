@@ -1488,8 +1488,8 @@ def divergent_wind_from_inversion(divmask,*,dx,dy):
             xdiff = (iindex-xindex)*dx1[y_ur:y_ll,x_ll:x_ur]
             ydiff = (jindex-yindex)*dy1[y_ur:y_ll,x_ll:x_ur]
             rsq = xdiff * xdiff + ydiff * ydiff
-            uchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
-            vchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(ydiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+            uchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+            vchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*(ydiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
 
 
 
