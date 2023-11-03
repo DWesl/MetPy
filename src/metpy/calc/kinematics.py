@@ -1433,3 +1433,66 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
                                          meridional_scale=meridional_scale)
     return divergence(grad_u, grad_y, dx=dx, dy=dy, x_dim=x_dim, y_dim=y_dim,
                       parallel_scale=parallel_scale, meridional_scale=meridional_scale)
+
+@exporter.export
+@parse_grid_arguments
+@check_units(vortmask='[speed]',dx='[length]', dy='[length]')
+def rotational_wind_from_inversion(vortmask,*,dx,dy):
+
+    dx1 = dx.magnitude
+    
+    dy1 = dy.magnitude
+    
+    vortmask1 = vortmask.values
+
+    for i in range(x_ll_subset, x_ur_subset):
+
+    
+        for j in range(y_ur_subset, y_ll_subset): 
+            
+            iindex[:,:] = i
+            jindex[:,:] = j
+            xdiff = (iindex-xindex)*dx1[y_ur:y_ll,x_ll:x_ur]
+            ydiff = (jindex-yindex)*dy1[y_ur:y_ll,x_ll:x_ur]
+            rsq = xdiff * xdiff + ydiff * ydiff
+            upsi[j,i] = np.where(rsq > 0., vortmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(ydiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+            vpsi[j,i] = np.where(rsq > 0., vortmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+
+
+
+
+    upsi[:,:] = (1/(2*np.pi)) * upsi[:,:]
+    vpsi[:,:] = (1/(2*np.pi)) * vpsi[:,:]
+
+    return upsi,vpsi
+
+@exporter.export
+@parse_grid_arguments
+@check_units(divmask='[speed]',dx='[length]', dy='[length]')
+def divergent_wind_from_inversion(divmask,*,dx,dy):
+
+    dx1 = dx.magnitude
+    
+    dy1 = dy.magnitude
+    
+    divmask1 = divmask.values
+
+
+    for i in range(x_ll_subset, x_ur_subset):
+
+    
+        for j in range(y_ur_subset, y_ll_subset): 
+            
+            iindex[:,:] = i
+            jindex[:,:] = j
+            xdiff = (iindex-xindex)*dx1[y_ur:y_ll,x_ll:x_ur]
+            ydiff = (jindex-yindex)*dy1[y_ur:y_ll,x_ll:x_ur]
+            rsq = xdiff * xdiff + ydiff * ydiff
+            uchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+            vchi[j,i] = np.where(rsq > 0., divmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(ydiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+
+
+
+
+    uchi[:,:] = (1/(2*np.pi)) * uchi[:,:]
+    vchi[:,:] = (1/(2*np.pi)) * vchi[:,:]
