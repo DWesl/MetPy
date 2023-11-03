@@ -1456,7 +1456,7 @@ def rotational_wind_from_inversion(vortmask,*,dx,dy):
             ydiff = (jindex-yindex)*dy1[y_ur:y_ll,x_ll:x_ur]
             rsq = xdiff * xdiff + ydiff * ydiff
             upsi[j,i] = np.where(rsq > 0., vortmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(ydiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
-            vpsi[j,i] = np.where(rsq > 0., vortmask1[y_ur:y_ll,x_ll:x_ur]*-1.0*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
+            vpsi[j,i] = np.where(rsq > 0., vortmask1[y_ur:y_ll,x_ll:x_ur]*(xdiff/rsq)*dx1[y_ur:y_ll,x_ll:x_ur]*dy1[y_ur:y_ll,x_ll:x_ur], 0.0).sum()
 
 
 
