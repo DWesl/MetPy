@@ -1496,3 +1496,5 @@ def divergent_wind_from_inversion(divmask,*,dx,dy):
 
     uchi[:,:] = (1/(2*np.pi)) * uchi[:,:]
     vchi[:,:] = (1/(2*np.pi)) * vchi[:,:]
+
+    return uchi,vchi
