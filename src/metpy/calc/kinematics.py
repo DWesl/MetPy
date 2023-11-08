@@ -1437,8 +1437,31 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
 @exporter.export
 @parse_grid_arguments
 @check_units(vortmask='[speed]',dx='[length]', dy='[length]')
-def rotational_wind_from_inversion(vortmask,*,dx,dy):
-
+def rotational_wind_from_inversion(vortmask,*,dx,dy,x_ll_subset,x_ur_subset,
+                                   y_ll_subset,y_ur_subset,x_ll,x_ur,y_ll,y_ur):
+    r"""Calculate reconstructed rotational wind field from vorticity
+    vortmask : 'xarray DataArray'  subset of the original vorticity for the entire globe 
+    dx : `pint.Quantity`,required
+        The grid spacing(s) in the x-direction. If an array, there should be one item less than
+        the size of `u` along the applicable axis. Optional if `xarray.DataArray` with
+        latitude/longitude coordinates used as input. Also optional if one-dimensional
+        longitude and latitude arguments are given for your data on a non-projected grid.
+        Keyword-only argument.
+    dy : `pint.Quantity`, required
+        The grid spacing(s) in the y-direction. If an array, there should be one item less than
+        the size of `u` along the applicable axis. Optional if `xarray.DataArray` with
+        latitude/longitude coordinates used as input. Also optional if one-dimensional
+        longitude and latitude arguments are given for your data on a non-projected grid.
+        Keyword-only argument.
+    x_ll_subset : int, required lower left longitude index of the outer bounding box
+    X_ur_subset : int, required upper right longitude index of the outer bounding box
+    y_ll_subset : int, required lower left latitude index of the outer bounding box
+    y_ur_subset : int, required upper right latitude index of the outer bounding box
+    x_ll : int, required lower left longitude index of the inner bounding box
+    X_ur : int, required upper right longitude index of the inner bounding box
+    y_ll : int, required lower left latitude index of the inner bounding box
+    y_ur : int, required upper right latitude index of the inner bounding box
+    """
     dx1 = dx.magnitude
     
     dy1 = dy.magnitude
@@ -1469,7 +1492,32 @@ def rotational_wind_from_inversion(vortmask,*,dx,dy):
 @exporter.export
 @parse_grid_arguments
 @check_units(divmask='[speed]',dx='[length]', dy='[length]')
-def divergent_wind_from_inversion(divmask,*,dx,dy):
+def divergent_wind_from_inversion(divmask,*,dx,dy,x_ll_subset,x_ur_subset,
+                                   y_ll_subset,y_ur_subset,x_ll,x_ur,y_ll,y_ur):
+
+    r"""Calculate reconstructed rotational wind field from vorticity
+    divmask : 'xarray DataArray'  subset of the original vorticity for the entire globe 
+    dx : `pint.Quantity`,required
+        The grid spacing(s) in the x-direction. If an array, there should be one item less than
+        the size of `u` along the applicable axis. Optional if `xarray.DataArray` with
+        latitude/longitude coordinates used as input. Also optional if one-dimensional
+        longitude and latitude arguments are given for your data on a non-projected grid.
+        Keyword-only argument.
+    dy : `pint.Quantity`, required
+        The grid spacing(s) in the y-direction. If an array, there should be one item less than
+        the size of `u` along the applicable axis. Optional if `xarray.DataArray` with
+        latitude/longitude coordinates used as input. Also optional if one-dimensional
+        longitude and latitude arguments are given for your data on a non-projected grid.
+        Keyword-only argument.
+    x_ll_subset : int, required lower left longitude index of the outer bounding box
+    X_ur_subset : int, required upper right longitude index of the outer bounding box
+    y_ll_subset : int, required lower left latitude index of the outer bounding box
+    y_ur_subset : int, required upper right latitude index of the outer bounding box
+    x_ll : int, required lower left longitude index of the inner bounding box
+    X_ur : int, required upper right longitude index of the inner bounding box
+    y_ll : int, required lower left latitude index of the inner bounding box
+    y_ur : int, required upper right latitude index of the inner bounding box
+    """
 
     dx1 = dx.magnitude
     
