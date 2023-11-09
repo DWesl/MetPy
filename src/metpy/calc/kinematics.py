@@ -1495,7 +1495,7 @@ def rotational_wind_from_inversion(vortmask,*,dx,dy,x_ll_subset,x_ur_subset,
 def divergent_wind_from_inversion(divmask,*,dx,dy,x_ll_subset,x_ur_subset,
                                    y_ll_subset,y_ur_subset,x_ll,x_ur,y_ll,y_ur):
 
-    r"""Calculate reconstructed rotational wind field from vorticity
+    r"""Calculate reconstructed divergent wind field from divergence
     divmask : 'xarray DataArray'  subset of the original vorticity for the entire globe 
     dx : `pint.Quantity`,required
         The grid spacing(s) in the x-direction. If an array, there should be one item less than
