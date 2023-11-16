@@ -71,10 +71,12 @@ Soundings
 
       bulk_shear
       bunkers_storm_motion
+      corfidi_storm_motion
       cape_cin
       ccl
       critical_angle
       cross_totals
+      downdraft_cape
       el
       k_index
       lcl

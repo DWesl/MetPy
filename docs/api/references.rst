@@ -39,6 +39,12 @@ References
            doi:`10.1175/1520-0434(2000)015\<0061:PSMUAN\>2.0.CO;2
            <https://doi.org/10.1175/1520-0434(2000)015\<0061:PSMUAN\>2.0.CO;2>`_.
 
+.. [Corfidi2003] Corfidi, S. F., 2003: Cold Pools and MCS Propagation:
+            Forecasting the Motion of Downwind-Developing MCSs.
+            *Wea. Forecasting.*, **18**, 997–1017,
+            doi:`10.1175/1520-0434(2003)018\<0997:CPAMPF\>2.0.CO;2
+            <https://doi.org/10.1175/1520-0434(2003)018\<0997:CPAMPF\>2.0.CO;2>`_.
+
 .. [CODATA2018] Tiesinga, Eite, Peter J. Mohr, David B. Newell, and Barry N. Taylor, 2020:
            The 2018 CODATA Recommended Values of the Fundamental Physical Constants
            (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
@@ -57,6 +63,8 @@ References
 .. [DoswellSchultz2006] Doswell, C. A. III, and D. M. Schultz, 2006: `On the Use of Indices and
            Parameters in Forecasting Severe Storms <https://ejssm.org/archives/2006/vol-1-3-2006/>`_.
            *Electronic J. Severe Storms Meteor.*, **1** (3), 1-22.
+
+.. [Emanuel1994] Emanuel, K. A., 1994: Atmospheric Convection. Oxford University Press, 592 pp.
 
 .. [Esterheld2008] Esterheld, J. M. and D. J. Giuliano, 2008: `Discriminating between Tornadic and
            Non-Tornadic Supercells: A New Hodograph Technique <https://ejssm.org/archives/2008/vol-3-2-2008/>`_.
