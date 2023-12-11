@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Python 3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
           cache: 'pip'
@@ -39,7 +39,7 @@ jobs:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          ruff check . | reviewdog -f=pep8 -name=flake8 -reporter=github-check -filter-mode=nofilter
+          ruff check . | reviewdog -f=pep8 -name=ruff -reporter=github-check -filter-mode=nofilter
 
       - name: Run flake8
         env:
@@ -65,3 +65,10 @@ jobs:
         run: |
           set -o pipefail
           codespell | reviewdog -efm='%f:%l: %m' -name=codespell -reporter=github-check -filter-mode=nofilter
+
+      - name: Check static data registry
+        # Don't skip if any other steps fail
+        if: always()
+        run: |
+          python -c "import pooch; pooch.make_registry('staticdata', 'src/metpy/static-data-manifest.txt')"
+          git diff --exit-code

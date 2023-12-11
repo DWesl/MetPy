@@ -17,7 +17,7 @@ jobs:
 
     - name: Set up Python
       id: setup
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: 3.x
 
@@ -56,4 +56,4 @@ jobs:
         cp packages-*/* dist/
 
     - name: Publish Package
-      uses: pypa/gh-action-pypi-publish@v1.8.10
+      uses: pypa/gh-action-pypi-publish@v1.8.11
