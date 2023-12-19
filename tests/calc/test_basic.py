@@ -246,11 +246,12 @@ def test_heat_index_undefined_flag():
 
 
 def test_heat_index_units():
-    """Test units coming out of heat index."""
+    """Test units coming out of heat index are unchanged."""
     temp = units.Quantity([35., 20.], units.degC)
     rh = 70 * units.percent
     hi = heat_index(temp, rh)
-    assert_almost_equal(hi.to('degC'), units.Quantity([50.3405, np.nan], units.degC), 4)
+    assert hi.units == temp.units
+    assert_almost_equal(hi, units.Quantity([50.3405, np.nan], units.degC), 4)
 
 
 def test_heat_index_ratio():
@@ -258,7 +259,7 @@ def test_heat_index_ratio():
     temp = units.Quantity([35., 20.], units.degC)
     rh = 0.7
     hi = heat_index(temp, rh)
-    assert_almost_equal(hi.to('degC'), units.Quantity([50.3405, np.nan], units.degC), 4)
+    assert_almost_equal(hi, units.Quantity([50.3405, np.nan], units.degC), 4)
 
 
 def test_heat_index_vs_nws():
@@ -278,7 +279,7 @@ def test_heat_index_kelvin():
     rh = 0.7
     hi = heat_index(temp, rh)
     # NB rounded up test value here vs the above two tests
-    assert_almost_equal(hi.to('degC'), 50.3406 * units.degC, 4)
+    assert_almost_equal(hi, 50.3406 * units.degC, 4)
 
 
 def test_height_to_geopotential(array_type):
@@ -799,6 +800,7 @@ def test_altimiter_to_sea_level_pressure_inhg():
     assert_almost_equal(res, truth, 3)
 
 
+@pytest.mark.filterwarnings('ignore:overflow encountered in exp:RuntimeWarning')
 def test_altimeter_to_sea_level_pressure_hpa(array_type):
     """Test the altimeter to sea level pressure function with hectopascals."""
     mask = [False, True, False, True]

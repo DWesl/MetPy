@@ -203,8 +203,9 @@ def test_moist_lapse_starting_points(start, direction):
 @pytest.mark.xfail(platform.machine() == 'arm64', reason='ValueError is not raised on Mac M2')
 @pytest.mark.xfail((sys.platform == 'win32') and version_check('scipy<1.11.3'),
                    reason='solve_ivp() does not error on Windows + SciPy < 1.11.3')
-@pytest.mark.xfail(version_check('scipy<1.7'),
-                   reason='solve_ivp() does not error on Scipy < 1.7')
+@pytest.mark.filterwarnings('ignore:overflow encountered in exp:RuntimeWarning')
+@pytest.mark.filterwarnings(r'ignore:invalid value encountered in \w*divide:RuntimeWarning')
+@pytest.mark.filterwarnings(r'ignore:.*Excess accuracy requested.*:UserWarning')
 def test_moist_lapse_failure():
     """Test moist_lapse under conditions that cause the ODE solver to fail."""
     p = np.logspace(3, -1, 10) * units.hPa
@@ -1293,9 +1294,12 @@ def test_isentropic_pressure_p_increase_rh_out():
     assert_almost_equal(isentprs[1], truerh, 3)
 
 
-def test_isentropic_pressure_interp():
+@pytest.mark.parametrize('press_3d', [False, True])
+def test_isentropic_pressure_interp(press_3d):
     """Test calculation of isentropic pressure function."""
     lev = [100000., 95000., 90000., 85000.] * units.Pa
+    if press_3d:
+        lev = np.lib.stride_tricks.broadcast_to(lev[:, None, None], (4, 5, 5))
     tmp = np.ones((4, 5, 5))
     tmp[0, :] = 296.
     tmp[1, :] = 292.
@@ -1386,29 +1390,10 @@ def test_isentropic_pressure_4d():
     assert_almost_equal(isentprs[1][:, 1, ], truerh, 3)
 
 
-def test_isentropic_interpolation_dataarray():
-    """Test calculation of isentropic interpolation with xarray dataarrays."""
-    temp = xr.DataArray([[[296.]], [[292.]], [[290.]], [[288.]]] * units.K,
-                        dims=('isobaric', 'y', 'x'),
-                        coords={'isobaric': (('isobaric',), [1000., 950., 900., 850.],
-                                             {'units': 'hPa'}),
-                                'time': '2020-01-01T00:00Z'})
-
-    rh = xr.DataArray([[[100.]], [[80.]], [[40.]], [[20.]]] * units.percent,
-                      dims=('isobaric', 'y', 'x'), coords={
-        'isobaric': (('isobaric',), [1000., 950., 900., 850.], {'units': 'hPa'}),
-        'time': '2020-01-01T00:00Z'})
-
-    isentlev = [296., 297.] * units.kelvin
-    press, rh_interp = isentropic_interpolation(isentlev, temp.isobaric, temp, rh)
-
-    assert_array_almost_equal(press, np.array([[[1000.]], [[936.213]]]) * units.hPa, 3)
-    assert_array_almost_equal(rh_interp, np.array([[[100.]], [[69.19706]]]) * units.percent, 3)
-
-
-def test_isentropic_interpolation_as_dataset():
-    """Test calculation of isentropic interpolation with xarray."""
-    data = xr.Dataset(
+@pytest.fixture
+def xarray_isentropic_data():
+    """Generate test xarray dataset for interpolation functions."""
+    return xr.Dataset(
         {
             'temperature': (
                 ('isobaric', 'y', 'x'),
@@ -1424,8 +1409,105 @@ def test_isentropic_interpolation_as_dataset():
             'time': '2020-01-01T00:00Z'
         }
     )
+
+
+def test_isentropic_interpolation_dataarray(xarray_isentropic_data):
+    """Test calculation of isentropic interpolation with xarray dataarrays."""
+    rh = xarray_isentropic_data.rh
+    temp = xarray_isentropic_data.temperature
+
     isentlev = [296., 297.] * units.kelvin
-    result = isentropic_interpolation_as_dataset(isentlev, data['temperature'], data['rh'])
+    press, rh_interp = isentropic_interpolation(isentlev, temp.isobaric, temp, rh)
+
+    assert_array_almost_equal(press, np.array([[[1000.]], [[936.213]]]) * units.hPa, 3)
+    assert_array_almost_equal(rh_interp, np.array([[[100.]], [[69.19706]]]) * units.percent, 3)
+
+
+def test_isentropic_interpolation_as_dataset(xarray_isentropic_data):
+    """Test calculation of isentropic interpolation with xarray."""
+    isentlev = [296., 297.] * units.kelvin
+    result = isentropic_interpolation_as_dataset(isentlev, xarray_isentropic_data.temperature,
+                                                 xarray_isentropic_data.rh)
+    expected = xr.Dataset(
+        {
+            'pressure': (
+                ('isentropic_level', 'y', 'x'),
+                [[[1000.]], [[936.213]]] * units.hPa,
+                {'standard_name': 'air_pressure'}
+            ),
+            'temperature': (
+                ('isentropic_level', 'y', 'x'),
+                [[[296.]], [[291.4579]]] * units.K,
+                {'standard_name': 'air_temperature'}
+            ),
+            'rh': (
+                ('isentropic_level', 'y', 'x'),
+                [[[100.]], [[69.19706]]] * units.percent
+            )
+        },
+        coords={
+            'isentropic_level': (
+                ('isentropic_level',),
+                [296., 297.],
+                {'units': 'kelvin', 'positive': 'up'}
+            ),
+            'time': '2020-01-01T00:00Z'
+        }
+    )
+    xr.testing.assert_allclose(result, expected)
+    assert result['pressure'].attrs == expected['pressure'].attrs
+    assert result['temperature'].attrs == expected['temperature'].attrs
+    assert result['isentropic_level'].attrs == expected['isentropic_level'].attrs
+
+
+def test_isentropic_interpolation_as_dataset_duplicate(xarray_isentropic_data):
+    """Test duplicate-level check in isentropic_interpolation_as_dataset."""
+    isentlev = [296., 296.] * units.kelvin
+    with pytest.warns(UserWarning):
+        _ = isentropic_interpolation_as_dataset(isentlev, xarray_isentropic_data.temperature,
+                                                xarray_isentropic_data.rh)
+
+
+@pytest.fixture
+def xarray_sigma_isentropic_data():
+    """Generate test xarray dataset on sigma vertical coords for interpolation functions."""
+    return xr.Dataset(
+        {
+            'temperature': (
+                ('z', 'y', 'x'),
+                [[[296.]], [[292.]], [[290.]], [[288.]]] * units.K
+            ),
+            'rh': (
+                ('z', 'y', 'x'),
+                [[[100.]], [[80.]], [[40.]], [[20.]]] * units.percent
+            ),
+            'pressure': (
+                ('z', 'y', 'x'),
+                [[[1000.]], [[950.]], [[900.]], [[850.]]] * units.hPa
+            )
+        },
+        coords={
+            'z': (('z',), [0.98, 0.928, 0.876, 0.825], {'units': 'dimensionless'}),
+            'time': '2020-01-01T00:00Z'
+        }
+    )
+
+
+def test_isen_interpolation_as_dataset_non_pressure_default(xarray_sigma_isentropic_data):
+    """Test isentropic interpolation with xarray data with non-pressure vertical coord."""
+    isentlev = [296., 297.] * units.kelvin
+    with pytest.raises(ValueError, match='vertical coordinate for the.*does not'):
+        isentropic_interpolation_as_dataset(isentlev,
+                                            xarray_sigma_isentropic_data.temperature,
+                                            xarray_sigma_isentropic_data.rh)
+
+
+def test_isen_interpolation_as_dataset_passing_pressre(xarray_sigma_isentropic_data):
+    """Test isentropic interpolation with xarray when passing a pressure array."""
+    isentlev = [296., 297.] * units.kelvin
+    result = isentropic_interpolation_as_dataset(
+        isentlev, xarray_sigma_isentropic_data.temperature,
+        xarray_sigma_isentropic_data.rh, pressure=xarray_sigma_isentropic_data.pressure)
     expected = xr.Dataset(
         {
             'pressure': (
@@ -1569,9 +1651,9 @@ def test_mixed_layer_cape_cin_bottom_pressure(multiple_intersections):
     """Test the calculation of mixed layer cape/cin with a specified bottom pressure."""
     pressure, temperature, dewpoint = multiple_intersections
     mlcape_middle, mlcin_middle = mixed_layer_cape_cin(pressure, temperature, dewpoint,
-                                                       parcel_start_pressure=800 * units.hPa)
-    assert_almost_equal(mlcape_middle, 0 * units('joule / kilogram'), 2)
-    assert_almost_equal(mlcin_middle, 0 * units('joule / kilogram'), 2)
+                                                       parcel_start_pressure=903 * units.hPa)
+    assert_almost_equal(mlcape_middle, 1177.86 * units('joule / kilogram'), 2)
+    assert_almost_equal(mlcin_middle, -37. * units('joule / kilogram'), 2)
 
 
 def test_dcape():
@@ -2522,7 +2604,8 @@ def test_parcel_profile_with_lcl_as_dataset_duplicates():
         }
     )
 
-    profile = parcel_profile_with_lcl_as_dataset(pressure, temperature, dewpoint)
+    with pytest.warns(UserWarning, match='Duplicate pressure'):
+        profile = parcel_profile_with_lcl_as_dataset(pressure, temperature, dewpoint)
 
     xr.testing.assert_allclose(profile, truth, atol=1e-5)
 

@@ -93,7 +93,7 @@ def wind_direction(u, v, convention='from'):
     origshape = wdir.shape
     wdir = np.atleast_1d(wdir)
 
-    # Handle oceanographic convection
+    # Handle oceanographic convention
     if convention == 'to':
         wdir -= units.Quantity(180., 'deg')
     elif convention not in ('to', 'from'):
@@ -251,7 +251,7 @@ def heat_index(temperature, relative_humidity, mask_undefined=True):
     >>> from metpy.calc import heat_index
     >>> from metpy.units import units
     >>> heat_index(30 * units.degC, 90 * units.percent)
-    <Quantity([105.3943646], 'degree_Fahrenheit')>
+    <Quantity([40.774647], 'degree_Celsius')>
     >>> heat_index(90 * units.degF, 90 * units.percent)
     <Quantity([121.901204], 'degree_Fahrenheit')>
     >>> heat_index(60 * units.degF, 90 * units.percent)
@@ -338,7 +338,7 @@ def heat_index(temperature, relative_humidity, mask_undefined=True):
         if mask.any():
             hi = masked_array(hi, mask=mask)
 
-    return hi
+    return hi.to(temperature.units)
 
 
 @exporter.export
@@ -405,8 +405,8 @@ def apparent_temperature(temperature, relative_humidity, speed, face_level_winds
     # NB: older numpy.ma.where does not return a masked array
     app_temperature = masked_array(
         np.ma.where(masked_array(wind_chill_temperature).mask,
-                    heat_index_temperature.to(temperature.units),
-                    wind_chill_temperature.to(temperature.units)
+                    heat_index_temperature.m_as(temperature.units),
+                    wind_chill_temperature.m_as(temperature.units)
                     ), temperature.units)
 
     # If mask_undefined is False, then set any masked values to the temperature
@@ -829,6 +829,9 @@ def smooth_gaussian(scalar_grid, n):
     num_ax = len(scalar_grid.shape)
     # Assume the last two axes represent the horizontal directions
     sgma_seq = [sgma if i > num_ax - 3 else 0 for i in range(num_ax)]
+    # Drop units as necessary to avoid warnings from scipy doing so--units will be reattached
+    # if necessary by wrapper
+    scalar_grid = getattr(scalar_grid, 'magnitude', scalar_grid)
 
     filter_args = {'sigma': sgma_seq, 'truncate': 2 * np.sqrt(2)}
     if hasattr(scalar_grid, 'mask'):
@@ -1104,6 +1107,8 @@ def zoom_xarray(input_field, zoom, output=None, order=3, mode='constant', cval=0
         available.
 
     """
+    # Dequantify input to avoid warnings and make sure units propagate
+    input_field = input_field.metpy.dequantify()
     # Zoom data
     zoomed_data = scipy_zoom(
         input_field.data, zoom, output=output, order=order, mode=mode, cval=cval,
