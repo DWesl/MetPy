@@ -1823,13 +1823,8 @@ class PlotGeometry(MetPyHasTraits):
         """
         color = proposal['value']
 
-        if isinstance(color, str):
-            color = [color]
         # `color` must be a collection if it is not a string
-        else:
-            color = list(color)
-
-        return color
+        return [color] if isinstance(color, str) else list(color)
 
     @staticmethod
     @validate('labels')
@@ -1877,10 +1872,7 @@ class PlotGeometry(MetPyHasTraits):
             geo_obj = geo_obj.geoms[label_hash % len(geo_obj.geoms)]
 
         # Get the list of coordinates of the polygon/line/point
-        if isinstance(geo_obj, Polygon):
-            coords = geo_obj.exterior.coords
-        else:
-            coords = geo_obj.coords
+        coords = geo_obj.exterior.coords if isinstance(geo_obj, Polygon) else geo_obj.coords
 
         return coords[label_hash % len(coords)]
 
@@ -1938,12 +1930,12 @@ class PlotGeometry(MetPyHasTraits):
                                 else self.label_edgecolor)
         self.label_facecolor = (['none'] if self.label_facecolor is None
                                 else self.label_facecolor)
-        kwargs = self.mpl_args
 
         # Each Shapely object is plotted separately with its corresponding colors and label
         for geo_obj, stroke, strokewidth, fill, label, fontcolor, fontoutline in zip(
                 self.geometry, cycle(self.stroke), cycle(self.stroke_width), cycle(self.fill),
                 cycle(self.labels), cycle(self.label_facecolor), cycle(self.label_edgecolor)):
+            kwargs = self.mpl_args.copy()
             # Plot the Shapely object with the appropriate method and colors
             if isinstance(geo_obj, (MultiPolygon, Polygon)):
                 kwargs.setdefault('edgecolor', stroke)
@@ -1990,10 +1982,7 @@ class PlotGeometry(MetPyHasTraits):
 
                 # If polygon, put label directly on edge of polygon. If line or point, put
                 # label slightly below line/point.
-                if isinstance(geo_obj, (MultiPolygon, Polygon)):
-                    offset = (0, 0)
-                else:
-                    offset = (0, -12)
+                offset = (0, 0) if isinstance(geo_obj, (MultiPolygon, Polygon)) else (0, -12)
 
                 # Finally, draw the label
                 self._draw_label(label, lon, lat, fontcolor, fontoutline, offset)
