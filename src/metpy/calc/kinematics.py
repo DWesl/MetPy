@@ -1440,7 +1440,7 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
 @check_units(vortmask='[speed]', dx='[length]', dy='[length]')
 def rotational_wind_from_inversion(vortmask, *, dx, dy, x_ll_subset, x_ur_subset,
                                    y_ll_subset, y_ur_subset, x_ll, x_ur, y_ll, y_ur):
-    r"""Calculate reconstructed rotational wind field from vorticity
+    r"""Calculate reconstructed rotational wind field from vorticity.
 
     Parameters
     ----------
@@ -1494,7 +1494,7 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, x_ll_subset, x_ur_subset
 def divergent_wind_from_inversion(divmask, *, dx, dy, x_ll_subset, x_ur_subset,
                                   y_ll_subset, y_ur_subset, x_ll, x_ur, y_ll, y_ur):
 
-    r"""Calculate reconstructed divergent wind field from divergence
+    r"""Calculate reconstructed divergent wind field from divergence.
 
     Parameters
     ----------
