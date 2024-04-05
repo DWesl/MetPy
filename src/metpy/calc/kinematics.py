@@ -3,10 +3,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Contains calculation of kinematic parameters (e.g. divergence or vorticity)."""
 import numpy as np
-
+from dataclasses import dataclass
 from . import coriolis_parameter
-from .tools import (first_derivative, geospatial_gradient, get_layer_heights,
-                    parse_grid_arguments, vector_derivative)
+from .tools import (first_derivative, geospatial_gradient, get_vectorized_array_indices,
+                    get_layer_heights, parse_grid_arguments, vector_derivative)
 from .. import constants as mpconsts
 from ..package_tools import Exporter
 from ..units import check_units, units
@@ -1438,8 +1438,7 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
 @exporter.export
 @parse_grid_arguments
 @check_units(vortmask='[speed]', dx='[length]', dy='[length]')
-def rotational_wind_from_inversion(vortmask, *, dx, dy, x_ll_subset, x_ur_subset,
-                                   y_ll_subset, y_ur_subset, x_ll, x_ur, y_ll, y_ur):
+def rotational_wind_from_inversion(vortmask, *, dx, dy, o_bb_indices, i_bb_indices):
     r"""Calculate reconstructed rotational wind field from vorticity.
 
     Parameters
@@ -1466,11 +1465,23 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, x_ll_subset, x_ur_subset
     y_ll : int, required lower left latitude index of the inner bounding box
     y_ur : int, required upper right latitude index of the inner bounding box
     """
+    upsi = xarray.zeros_like(vortmask)
+    vpsi = xarray.zeros_like(vortmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
+    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(o_bb_indices,
+                                                                    i_bb_indices)
+    o_x_ll = o_bb_indices.x_ll
+    o_x_ur = o_bb_indices.x_ur
+    o_y_ll = o_bb_indices.y_ll
+    o_y_ur = o_bb.indices.y_ur
+    x_ll = i_bb_indices.x_ll
+    x_ur = i_bb_indices.x_ur
+    y_ll = i_bb_indices.y_ll
+    y_ur = i_bb_indices.y_ur
     vortmask1 = vortmask.values
-    for i in range(x_ll_subset, x_ur_subset):
-        for j in range(y_ur_subset, y_ll_subset):
+    for i in range(o_x_ll, o_x_ur):
+        for j in range(o_y_ur, o_y_ll):
             iindex[:, :] = i
             jindex[:, :] = j
             xdiff = (iindex - xindex) * dx1[y_ur:y_ll, x_ll:x_ur]
@@ -1491,8 +1502,7 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, x_ll_subset, x_ur_subset
 @exporter.export
 @parse_grid_arguments
 @check_units(divmask='[speed]', dx='[length]', dy='[length]')
-def divergent_wind_from_inversion(divmask, *, dx, dy, x_ll_subset, x_ur_subset,
-                                  y_ll_subset, y_ur_subset, x_ll, x_ur, y_ll, y_ur):
+def divergent_wind_from_inversion(divmask, *, dx, dy, o_bb_indices, i_bb_indices):
 
     r"""Calculate reconstructed divergent wind field from divergence.
 
@@ -1520,12 +1530,23 @@ def divergent_wind_from_inversion(divmask, *, dx, dy, x_ll_subset, x_ur_subset,
     y_ll : int, required lower left latitude index of the inner bounding box
     y_ur : int, required upper right latitude index of the inner bounding box
     """
-
+    uchi = xarray.zeros_like(divmask)
+    vchi = xarray.zeros_like(divmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     divmask1 = divmask.values
-    for i in range(x_ll_subset, x_ur_subset):
-        for j in range(y_ur_subset, y_ll_subset):
+    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(o_bb_indices,
+                                                                    i_bb_indices)
+    o_x_ll = o_bb_indices.x_ll
+    o_x_ur = o_bb_indices.x_ur
+    o_y_ll = o_bb_indices.y_ll
+    o_y_ur = o_bb.indices.y_ur
+    x_ll = i_bb_indices.x_ll
+    x_ur = i_bb_indices.x_ur
+    y_ll = i_bb_indices.y_ll
+    y_ur = i_bb_indices.y_ur
+    for i in range(o_x_ll, o_x_ur):
+        for j in range(o_y_ur, o_y_ll):
             iindex[:, :] = i
             jindex[:, :] = j
             xdiff = (iindex - xindex) * dx1[y_ur:y_ll, x_ll:x_ur]
