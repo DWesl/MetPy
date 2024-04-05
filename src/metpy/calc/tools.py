@@ -7,6 +7,7 @@ import functools
 from inspect import Parameter, signature
 from operator import itemgetter
 
+from dataclasses import dataclass
 import numpy as np
 from numpy.core.numeric import normalize_axis_index
 import numpy.ma as ma
@@ -1922,3 +1923,32 @@ def _remove_nans(*variables):
     for v in variables:
         ret.append(v[~mask])
     return ret
+
+
+@exporter.export
+def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
+    """ Returns a bounding box within the specified coordinates
+    """
+    mask = ((data_array.latitude <= max_lat) & (data_array.latitude >= min_lat)
+            & (data_array.longitude <= max_lon) & (data_array.longitude >= min_lon))
+    data_mask = data_array.where(mask)
+
+    data_mask = data_mask.fillna(0.0)
+    return data_mask
+
+
+@exporter.export
+def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
+
+    @dataclass
+    class BoundingBoxIndices:
+        x_ll: int = None
+        x_ur: int = None
+        y_ll: int = None
+        y_ur: int = None
+    x_ll = list(data_mask.longitude.values).index(min_lon)
+    x_ur = list(data_mask.longitude.values).index(max_lon)
+    y_ll = list(data_mask.latitude.values).index(min_lat)
+    y_ur = list(data_tmask.latitude.values).index(max_lat)
+    bounding_box_indices = BoundingBoxIndices(x_ll, x_ur, y_ll, y_ur)
+    return bounding_box_indices
