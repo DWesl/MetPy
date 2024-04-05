@@ -545,12 +545,17 @@ class Level2File:
                 attr = f'VCPAT{num}'
                 dat = self.rda[attr]
                 vcp_hdr = self.vcp_fmt.unpack_from(dat, 0)
-                off = self.vcp_fmt.size
-                els = []
-                for _ in range(vcp_hdr.num_el_cuts):
-                    els.append(self.vcp_el_fmt.unpack_from(dat, off))
-                    off += self.vcp_el_fmt.size
-                self.rda[attr] = vcp_hdr._replace(els=els)
+                # At some point these got changed to spares, so only try to parse the rest if
+                # it looks like the right data.
+                if vcp_hdr.num == num and 0 < 2 * vcp_hdr.size_hw <= len(dat):
+                    off = self.vcp_fmt.size
+                    els = []
+                    for _ in range(vcp_hdr.num_el_cuts):
+                        els.append(self.vcp_el_fmt.unpack_from(dat, off))
+                        off += self.vcp_el_fmt.size
+                    self.rda[attr] = vcp_hdr._replace(els=els)
+                else:  # Otherwise this is just spare and we should dump
+                    self.rda.pop(attr)
 
     msg31_data_hdr_fmt = NamedStruct([('stid', '4s'), ('time_ms', 'L'),
                                       ('date', 'H'), ('az_num', 'H'),
@@ -717,15 +722,8 @@ def float16(val):
     exp = (val >> 10) & 0x1F
     sign = val >> 15
 
-    if exp:
-        value = 2 ** (exp - 16) * (1 + float(frac) / 2**10)
-    else:
-        value = float(frac) / 2**9
-
-    if sign:
-        value *= -1
-
-    return value
+    value = 2 ** (exp - 16) * (1 + float(frac) / 2**10) if exp else float(frac) / 2**9
+    return -value if sign else value
 
 
 def float32(short1, short2):
@@ -1850,10 +1848,10 @@ class Level3File:
         log.debug('Symbology block info: %s', blk)
 
         self.sym_block = []
-        assert blk.divider == -1, ('Bad divider for symbology block: {:d} should be -1'
-                                   .format(blk.divider))
-        assert blk.block_id == 1, ('Bad block ID for symbology block: {:d} should be 1'
-                                   .format(blk.block_id))
+        assert blk.divider == -1, (f'Bad divider for symbology block: {blk.divider} should '
+                                   'be -1')
+        assert blk.block_id == 1, (f'Bad block ID for symbology block: {blk.block_id} should '
+                                   'be 1')
         for _ in range(blk.nlayer):
             layer_hdr = self._buffer.read_struct(self.sym_layer_fmt)
             assert layer_hdr.divider == -1
@@ -1874,10 +1872,10 @@ class Level3File:
     def _unpack_graphblock(self, start, offset):
         self._buffer.jump_to(start, offset)
         hdr = self._buffer.read_struct(self.graph_block_fmt)
-        assert hdr.divider == -1, ('Bad divider for graphical block: {:d} should be -1'
-                                   .format(hdr.divider))
-        assert hdr.block_id == 2, ('Bad block ID for graphical block: {:d} should be 1'
-                                   .format(hdr.block_id))
+        assert hdr.divider == -1, (f'Bad divider for graphical block: {hdr.divider} should '
+                                   f'be -1')
+        assert hdr.block_id == 2, (f'Bad block ID for graphical block: {hdr.block_id} should '
+                                   'be 1')
         self.graph_pages = []
         for page in range(hdr.num_pages):
             page_num = self._buffer.read_int(2, 'big', signed=False)

@@ -115,10 +115,10 @@ class MetPyDataArrayAccessor:
         >>> temperature = xr.DataArray([[0, 1], [2, 3]] * units.degC, dims=('lat', 'lon'),
         ...                            coords={'lat': [40, 41], 'lon': [-105, -104]})
         >>> temperature.metpy.x
-        <xarray.DataArray 'lon' (lon: 2)>
+        <xarray.DataArray 'lon' (lon: 2)> Size: 16B
         array([-105, -104])
         Coordinates:
-          * lon      (lon) int64 -105 -104
+          * lon      (lon) int64 16B -105 -104
         Attributes:
             _metpy_axis:  x,longitude
 
@@ -338,15 +338,16 @@ class MetPyDataArrayAccessor:
     def _generate_coordinate_map(self):
         """Generate a coordinate map via CF conventions and other methods."""
         coords = self._data_array.coords.values()
-        # Parse all the coordinates, attempting to identify x, longitude, y, latitude,
-        # vertical, time
-        coord_lists = {'time': [], 'vertical': [], 'y': [], 'latitude': [], 'x': [],
-                       'longitude': []}
+        # Parse all the coordinates, attempting to identify longitude, latitude, x, y,
+        # time, vertical, in that order.
+        coord_lists = {'longitude': [], 'latitude': [], 'x': [], 'y': [], 'time': [],
+                       'vertical': []}
         for coord_var in coords:
             # Identify the coordinate type using check_axis helper
             for axis in coord_lists:
                 if check_axis(coord_var, axis):
                     coord_lists[axis].append(coord_var)
+                    break  # Ensure a coordinate variable only goes to one axis
 
         # Fill in x/y with longitude/latitude if x/y not otherwise present
         for geometric, graticule in (('y', 'latitude'), ('x', 'longitude')):

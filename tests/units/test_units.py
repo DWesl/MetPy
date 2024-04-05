@@ -8,7 +8,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from metpy.testing import assert_array_almost_equal, assert_array_equal, assert_nan
+from metpy.testing import (assert_almost_equal, assert_array_almost_equal, assert_array_equal,
+                           assert_nan)
 from metpy.units import (check_units, concatenate, is_quantity,
                          pandas_dataframe_to_unit_arrays, units)
 
@@ -176,6 +177,7 @@ def test_added_degrees_units():
     assert units('degrees_north').to_base_units().units == units.radian
     assert units('degrees_east') == units('degrees')
     assert units('degrees_east').to_base_units().units == units.radian
+    assert_almost_equal(0 * units.dBz, 1 * units('mm^6/m^3'))
 
 
 def test_is_quantity():
@@ -193,7 +195,7 @@ def test_is_quantity_multiple():
 def test_gpm_unit():
     """Test that the gpm unit does alias to meters."""
     x = 1 * units('gpm')
-    assert str(x.units) == 'meter'
+    assert x.units == units('meter')
 
 
 def test_assert_nan():
@@ -210,7 +212,7 @@ def test_assert_nan_checks_units():
 
 def test_percent_units():
     """Test that percent sign units are properly parsed and interpreted."""
-    assert str(units('%').units) == 'percent'
+    assert units('%').units == units('percent')
 
 
 @pytest.mark.parametrize(
