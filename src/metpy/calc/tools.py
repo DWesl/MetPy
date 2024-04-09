@@ -1968,11 +1968,7 @@ def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
 
 
 @exporter.export
-def get_vectorized_array_indices(o_bb_indices, i_bb_indices):
-    o_x_ll = o_bb_indices.x_ll
-    o_x_ur = o_bb_indices.x_ur
-    o_y_ll = o_bb_indices.y_ll
-    o_y_ur = o_bb_indices.y_ur
+def get_vectorized_array_indices(i_bb_indices):
     i_x_ll = i_bb_indices.x_ll
     i_x_ur = i_bb_indices.x_ur
     i_y_ll = i_bb_indices.y_ll

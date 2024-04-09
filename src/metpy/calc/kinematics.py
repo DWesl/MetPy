@@ -1452,15 +1452,14 @@ def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices)
         latitude/longitude coordinates used as input. Also optional if one-dimensional
         longitude and latitude arguments are given for your data on a non-projected grid.
         Keyword-only argument.
-    o_bb_indices : contains the x and y lower left and upper right indices of the outer bounding box
-    i_bb_indices : contains the x and y lower left and upper right indices of the inner bounding box
+    o_bb_indices : contains the x and y lower left and upper right indices
+    i_bb_indices : contains the x and y lower left and upper right indices
     """
     upsi = xa.zeros_like(vortmask)
     vpsi = xa.zeros_like(vortmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
-    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(o_bb_indices,
-                                                                    i_bb_indices)
+    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
@@ -1509,16 +1508,15 @@ def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
         latitude/longitude coordinates used as input. Also optional if one-dimensional
         longitude and latitude arguments are given for your data on a non-projected grid.
         Keyword-only argument.
-    o_bb_indices : contains the x and y lower left and upper right indices of the outer bounding box
-    i_bb_indices : contains the x and y lower left and upper right indices of the inner bounding box
+    o_bb_indices : contains the x and y lower left and upper right indices
+    i_bb_indices : contains the x and y lower left and upper right indices
     """
     uchi = xa.zeros_like(divmask)
     vchi = xa.zeros_like(divmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     divmask1 = divmask.values
-    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(o_bb_indices,
-                                                                    i_bb_indices)
+    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
