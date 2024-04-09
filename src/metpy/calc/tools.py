@@ -1979,6 +1979,4 @@ def get_vectorized_array_indices(i_bb_indices):
     yindex = np.linspace(i_y_ur, i_y_ll, num=y * x, endpoint=False, dtype=np.int32)
     xindex = xindex.reshape((y, x), order='F')
     yindex = yindex.reshape((y, x), order='C')
-    iindex = np.zeros((y, x), dtype=np.int32)
-    jindex = np.zeros((y, x), dtype=np.int32)
-    return [iindex, jindex, xindex, yindex]
+    return [xindex, yindex]

@@ -1459,7 +1459,9 @@ def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices)
     vpsi = xa.zeros_like(vortmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
-    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
+    [xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
+    iindex = np.zeros_like(yindex)
+    jindex = np.zeros_like(yindex)
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
@@ -1516,7 +1518,9 @@ def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     divmask1 = divmask.values
-    [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
+    [xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
+    iindex = np.zeros_like(yindex)
+    jindex = np.zeros_like(yindex)
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
