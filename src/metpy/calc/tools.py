@@ -1944,9 +1944,8 @@ def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
     """ Returns a bounding box within the specified coordinates
     """
     mask = ((data_array.latitude <= max_lat) & (data_array.latitude >= min_lat)
-            & (data_array.longitude <= max_lon.) & (data_array.longitude >= min_lon))
+            & (data_array.longitude <= max_lon) & (data_array.longitude >= min_lon))
     data_mask = data_array.where(mask)
-
     data_mask = data_mask.fillna(0.0)
     return data_mask
 
@@ -1970,20 +1969,18 @@ def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
 
 @exporter.export
 def get_vectorized_array_indices(o_bb_indices, i_bb_indices):
-    o_x_ll = o_bounding_box_indices.x_ll
-    o_x_ur = o_bounding_box_indices.x_ur
-    o_y_ll = o_bounding_box_indices.y_ll
-    o_y_ur = o_bounding_box_indices.y_ur
-    i_x_ll = i_bounding_box_indices.x_ll
-    i_x_ur = i_bounding_box_indices.x_ur
-    i_y_ll = i_bounding_box_indices.y_ll
-    i_y_ur = i_bounding_box_indices.y_ur
-    i = np.abs(o_x_ll - o_x_ur)
-    j = np.abs(o_y_ll - o_y_ur)
+    o_x_ll = o_bb_indices.x_ll
+    o_x_ur = o_bb_indices.x_ur
+    o_y_ll = o_bb_indices.y_ll
+    o_y_ur = o_bb_indices.y_ur
+    i_x_ll = i_bb_indices.x_ll
+    i_x_ur = i_bb_indices.x_ur
+    i_y_ll = i_bb_indices.y_ll
+    i_y_ur = i_bb_indices.y_ur
     x = np.abs(i_x_ll - i_x_ur)
     y = np.abs(i_y_ll - i_y_ur)
-    xindex = np.linspace(x_ll, x_ur, num=x * y, endpoint=False, dtype=np.int32)
-    yindex = np.linspace(y_ur, y_ll, num=y * x, endpoint=False, dtype=np.int32)
+    xindex = np.linspace(i_x_ll, i_x_ur, num=x * y, endpoint=False, dtype=np.int32)
+    yindex = np.linspace(i_y_ur, i_y_ll, num=y * x, endpoint=False, dtype=np.int32)
     xindex = xindex.reshape((y, x), order='F')
     yindex = yindex.reshape((y, x), order='C')
     iindex = np.zeros((y, x), dtype=np.int32)

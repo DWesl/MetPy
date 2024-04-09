@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Contains calculation of kinematic parameters (e.g. divergence or vorticity)."""
 import numpy as np
+import xarray as xa
 from dataclasses import dataclass
 from . import coriolis_parameter
 from .tools import (first_derivative, geospatial_gradient, get_vectorized_array_indices,
@@ -1433,9 +1434,7 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
 
 
 @exporter.export
-@parse_grid_arguments
-@check_units(vortmask='[speed]', dx='[length]', dy='[length]')
-def rotational_wind_from_inversion(vortmask, *, dx, dy, o_bb_indices, i_bb_indices):
+def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices):
     r"""Calculate reconstructed rotational wind field from vorticity.
 
     Parameters
@@ -1453,17 +1452,11 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, o_bb_indices, i_bb_indic
         latitude/longitude coordinates used as input. Also optional if one-dimensional
         longitude and latitude arguments are given for your data on a non-projected grid.
         Keyword-only argument.
-    x_ll_subset : int, required lower left longitude index of the outer bounding box
-    X_ur_subset : int, required upper right longitude index of the outer bounding box
-    y_ll_subset : int, required lower left latitude index of the outer bounding box
-    y_ur_subset : int, required upper right latitude index of the outer bounding box
-    x_ll : int, required lower left longitude index of the inner bounding box
-    X_ur : int, required upper right longitude index of the inner bounding box
-    y_ll : int, required lower left latitude index of the inner bounding box
-    y_ur : int, required upper right latitude index of the inner bounding box
+    o_bb_indices : contains the x and y lower left and upper right indices of the outer bounding box
+    i_bb_indices : contains the x and y lower left and upper right indices of the inner bounding box
     """
-    upsi = xarray.zeros_like(vortmask)
-    vpsi = xarray.zeros_like(vortmask)
+    upsi = xa.zeros_like(vortmask)
+    vpsi = xa.zeros_like(vortmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     [iindex, jindex, xindex, yindex] = get_vectorized_array_indices(o_bb_indices,
@@ -1471,7 +1464,7 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, o_bb_indices, i_bb_indic
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
-    o_y_ur = o_bb.indices.y_ur
+    o_y_ur = o_bb_indices.y_ur
     x_ll = i_bb_indices.x_ll
     x_ur = i_bb_indices.x_ur
     y_ll = i_bb_indices.y_ll
@@ -1497,9 +1490,7 @@ def rotational_wind_from_inversion(vortmask, *, dx, dy, o_bb_indices, i_bb_indic
 
 
 @exporter.export
-@parse_grid_arguments
-@check_units(divmask='[speed]', dx='[length]', dy='[length]')
-def divergent_wind_from_inversion(divmask, *, dx, dy, o_bb_indices, i_bb_indices):
+def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
 
     r"""Calculate reconstructed divergent wind field from divergence.
 
@@ -1518,17 +1509,11 @@ def divergent_wind_from_inversion(divmask, *, dx, dy, o_bb_indices, i_bb_indices
         latitude/longitude coordinates used as input. Also optional if one-dimensional
         longitude and latitude arguments are given for your data on a non-projected grid.
         Keyword-only argument.
-    x_ll_subset : int, required lower left longitude index of the outer bounding box
-    X_ur_subset : int, required upper right longitude index of the outer bounding box
-    y_ll_subset : int, required lower left latitude index of the outer bounding box
-    y_ur_subset : int, required upper right latitude index of the outer bounding box
-    x_ll : int, required lower left longitude index of the inner bounding box
-    X_ur : int, required upper right longitude index of the inner bounding box
-    y_ll : int, required lower left latitude index of the inner bounding box
-    y_ur : int, required upper right latitude index of the inner bounding box
+    o_bb_indices : contains the x and y lower left and upper right indices of the outer bounding box
+    i_bb_indices : contains the x and y lower left and upper right indices of the inner bounding box
     """
-    uchi = xarray.zeros_like(divmask)
-    vchi = xarray.zeros_like(divmask)
+    uchi = xa.zeros_like(divmask)
+    vchi = xa.zeros_like(divmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     divmask1 = divmask.values
@@ -1537,7 +1522,7 @@ def divergent_wind_from_inversion(divmask, *, dx, dy, o_bb_indices, i_bb_indices
     o_x_ll = o_bb_indices.x_ll
     o_x_ur = o_bb_indices.x_ur
     o_y_ll = o_bb_indices.y_ll
-    o_y_ur = o_bb.indices.y_ur
+    o_y_ur = o_bb_indices.y_ur
     x_ll = i_bb_indices.x_ll
     x_ur = i_bb_indices.x_ur
     y_ll = i_bb_indices.y_ll
