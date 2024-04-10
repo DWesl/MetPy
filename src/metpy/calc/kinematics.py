@@ -4,7 +4,6 @@
 """Contains calculation of kinematic parameters (e.g. divergence or vorticity)."""
 import numpy as np
 import xarray as xa
-from dataclasses import dataclass
 from . import coriolis_parameter
 from .tools import (first_derivative, geospatial_gradient, get_vectorized_array_indices,
                     get_layer_heights, parse_grid_arguments, vector_derivative)
@@ -1492,7 +1491,6 @@ def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices)
 
 @exporter.export
 def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
-
     r"""Calculate reconstructed divergent wind field from divergence.
 
     Parameters
