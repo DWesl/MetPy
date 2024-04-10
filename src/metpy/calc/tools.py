@@ -1941,7 +1941,7 @@ def _remove_nans(*variables):
 
 @exporter.export
 def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
-    """Construct  a bounding box mask  within the specified coordinates
+    """Construct  a bounding box mask  within the specified coordinates.
     All values that satisfy the condition below will have 1 in the mask
     and others zero
     """
