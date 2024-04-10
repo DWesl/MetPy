@@ -208,11 +208,14 @@ Other
 
       angle_to_direction
       azimuth_range_to_lat_lon
+      bounding_box_mask
       find_bounding_indices
+      find_bounding_box_indices
       find_intersections
       get_layer
       get_layer_heights
       get_perturbation
+      get_vectorized_array_indices
       isentropic_interpolation
       isentropic_interpolation_as_dataset
       nearest_intersection_idx
