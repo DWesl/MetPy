@@ -1433,7 +1433,8 @@ def geospatial_laplacian(f, *, dx=None, dy=None, x_dim=-1, y_dim=-2,
 
 
 @exporter.export
-def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices):
+@parse_grid_arguments
+def rotational_wind_from_inversion(umask, vmask, vortmask, dx, dy, o_bb_indices, i_bb_indices):
     r"""Calculate reconstructed rotational wind field from vorticity.
 
     Parameters
@@ -1454,8 +1455,8 @@ def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices)
     o_bb_indices : contains the x and y lower left and upper right indices
     i_bb_indices : contains the x and y lower left and upper right indices
     """
-    upsi = xa.zeros_like(vortmask)
-    vpsi = xa.zeros_like(vortmask)
+    upsi = xa.zeros_like(umask)
+    vpsi = xa.zeros_like(vmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     [xindex, yindex] = get_vectorized_array_indices(i_bb_indices)
@@ -1486,11 +1487,13 @@ def rotational_wind_from_inversion(vortmask, dx, dy, o_bb_indices, i_bb_indices)
     upsi[:, :] = (1 / (2 * np.pi)) * upsi[:, :]
     vpsi[:, :] = (1 / (2 * np.pi)) * vpsi[:, :]
 
+    upsi = upsi.metpy.quantify()
+    vpsi = vpsi.metpy.quantify()
     return upsi, vpsi
 
 
 @exporter.export
-def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
+def divergent_wind_from_inversion(umask, vmask, divmask, dx, dy, o_bb_indices, i_bb_indices):
     r"""Calculate reconstructed divergent wind field from divergence.
 
     Parameters
@@ -1511,8 +1514,8 @@ def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
     o_bb_indices : contains the x and y lower left and upper right indices
     i_bb_indices : contains the x and y lower left and upper right indices
     """
-    uchi = xa.zeros_like(divmask)
-    vchi = xa.zeros_like(divmask)
+    uchi = xa.zeros_like(umask)
+    vchi = xa.zeros_like(vmask)
     dx1 = dx.magnitude
     dy1 = dy.magnitude
     divmask1 = divmask.values
@@ -1543,5 +1546,6 @@ def divergent_wind_from_inversion(divmask, dx, dy, o_bb_indices, i_bb_indices):
 
     uchi[:, :] = (1 / (2 * np.pi)) * uchi[:, :]
     vchi[:, :] = (1 / (2 * np.pi)) * vchi[:, :]
-
+    uchi.metpy().quantify()
+    vchi.metpy().quantify()
     return uchi, vchi
