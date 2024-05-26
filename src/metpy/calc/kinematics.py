@@ -1487,8 +1487,6 @@ def rotational_wind_from_inversion(umask, vmask, vortmask, dx, dy, o_bb_indices,
     upsi[:, :] = (1 / (2 * np.pi)) * upsi[:, :]
     vpsi[:, :] = (1 / (2 * np.pi)) * vpsi[:, :]
 
-    upsi = upsi.metpy.quantify()
-    vpsi = vpsi.metpy.quantify()
     return upsi, vpsi
 
 
@@ -1546,6 +1544,5 @@ def divergent_wind_from_inversion(umask, vmask, divmask, dx, dy, o_bb_indices, i
 
     uchi[:, :] = (1 / (2 * np.pi)) * uchi[:, :]
     vchi[:, :] = (1 / (2 * np.pi)) * vchi[:, :]
-    uchi.metpy().quantify()
-    vchi.metpy().quantify()
+
     return uchi, vchi
