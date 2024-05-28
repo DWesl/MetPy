@@ -1588,7 +1588,7 @@ def test_bounding_box_mask():
     max_lon = 100.
     temp_mask1 = bounding_box_mask(temp, min_lat, max_lat, min_lon, max_lon)
     temp_mask2 = bounding_box_mask(temp, 0., 40., 30., 70.)
-    assert_array_equal(temp_mask1.values, data_mask2.values)
+    assert_array_equal(temp_mask1.values, temp_mask2.values)
 
 
 def test_find_bounding_box_indices():
