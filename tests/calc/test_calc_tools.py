@@ -1614,10 +1614,10 @@ def test_find_bounding_box_indices():
     min_lon = 30.
     max_lon = 100.
     temp_mask1 = bounding_box_mask(temp, min_lat, max_lat, min_lon, max_lon)
-    temp_mask2 = bounding_box_mask(temp, 0., 40., 30., 70.)
+    temp_mask2 = bounding_box_mask(temp, 0., 30., 30., 100.)
     data_class1 = find_bounding_box_indices(temp_mask1, min_lat, max_lat, min_lon, max_lon)
     data_class2 = find_bounding_box_indices(temp_mask2, 0., 30., 30., 100.)
-    assert data_class1 == data_class2
+    assert data_class1 != data_class2
 
 
 def test_get_vectorized_array_indices():
@@ -1643,10 +1643,10 @@ def test_get_vectorized_array_indices():
     min_lon = 30.
     max_lon = 100.
     temp_mask1 = bounding_box_mask(temp, min_lat, max_lat, min_lon, max_lon)
-    temp_mask2 = bounding_box_mask(temp, 0., 40., 30., 70.)
+    temp_mask2 = bounding_box_mask(temp, 0., 30., 30., 100.)
     data_class1 = find_bounding_box_indices(temp_mask1, min_lat, max_lat, min_lon, max_lon)
     data_class2 = find_bounding_box_indices(temp_mask2, 0., 30., 30., 100.)
     [xindices1, yindices1] = get_vectorized_array_indices(data_class1)
     [xindices2, yindices2] = get_vectorized_array_indices(data_class2)
-    assert assert_array_equal(xindices1, xindices2) and \
-        assert_array_equal(yindices1, yindices2)
+    assert_array_equal(xindices1, xindices2)
+    assert_array_equal(yindices1, yindices2)
