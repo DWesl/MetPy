@@ -1948,8 +1948,9 @@ def _remove_nans(*variables):
 @exporter.export
 def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
     """Construct  a bounding box mask  within the specified coordinates.
+
     All values that satisfy the condition below will have 1 in the mask
-    and others zero
+    and others zero.
     """
     mask = ((data_array.latitude <= max_lat) & (data_array.latitude >= min_lat)
             & (data_array.longitude <= max_lon) & (data_array.longitude >= min_lon))
@@ -1960,7 +1961,7 @@ def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
 
 @exporter.export
 def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
-    """Computes the array indices of a  bounding box"""
+    """Computes the array indices of a  bounding box."""
     
     @dataclass
     class BoundingBoxIndices:
@@ -1979,7 +1980,7 @@ def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
 @exporter.export
 def get_vectorized_array_indices(i_bb_indices):
     """function computes the vectorization indices for  inner for loop in the
-    wind field reconstruction method
+    wind field reconstruction method.
     """
     
     i_x_ll = i_bb_indices.x_ll
