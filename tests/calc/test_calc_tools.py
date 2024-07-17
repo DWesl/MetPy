@@ -1564,7 +1564,7 @@ def test_vector_derivative_return_subset(return_only, length):
 
 
 def test_bounding_box_mask():
-    """ Test the mask of a bounding box. """ 
+    """ Test the mask of a bounding box. """
     temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
