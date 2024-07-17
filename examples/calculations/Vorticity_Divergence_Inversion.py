@@ -24,8 +24,7 @@ import matplotlib.ticker as mticker
 import cartopy.crs as crs
 from cartopy.feature import NaturalEarthFeature
 from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
-import sys
-import time
+
 if (not os.path.isfile('gfs.t12z.pgrb2.0p25.f000')):
 
     client = boto3.client('s3', config=Config(signature_version=UNSIGNED))
@@ -55,10 +54,10 @@ fig = plt.figure(figsize=(12, 9), dpi=300.)
 ax = plt.axes(projection=crs.PlateCarree())
 
 # Add country borders and coastlines.
-countries = NaturalEarthFeature(category="cultural", scale="50m",
-                                facecolor="none",
-                                name="admin_0_countries")
-ax.add_feature(countries, linewidth=.5, edgecolor="black")
+countries = NaturalEarthFeature(category='cultural', scale='50m',
+                                facecolor='none',
+                                name='admin_0_countries')
+ax.add_feature(countries, linewidth=.5, edgecolor='black')
 ax.coastlines('50m', linewidth=0.8)
 
 plot = vort850.plot(levels=np.arange(-1.e-4, 1.e-4, 0.2e-5),
@@ -69,7 +68,7 @@ plot = vort850.plot(levels=np.arange(-1.e-4, 1.e-4, 0.2e-5),
 ax.set_extent([-180., -150., 0., 20.], crs=crs.PlateCarree())
 
 # Add latitude/longitude gridlines.
-gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
+gridlines = ax.gridlines(color='grey', linestyle='dotted', draw_labels=True)
 gridlines.xlabels_top = False
 gridlines.ylabels_right = False
 gridlines.xlocator = mticker.FixedLocator(np.arange(-180., 149., 5.))
@@ -80,7 +79,7 @@ gridlines.xformatter = LONGITUDE_FORMATTER
 gridlines.yformatter = LATITUDE_FORMATTER
 
 # Add a plot title, then show the image.
-plt.title("GFS 0-h 850 hPa relative vorticity (x$10^{-5} s^{-1}$) at 1200 UTC 9 August 2023")
+plt.title('GFS 0-h 850 hPa relative vorticity (x$10^{-5} s^{-1}$) at 1200 UTC 9 August 2023')
 plt.savefig('vort.png')
 plt.show()
 
@@ -96,9 +95,9 @@ fig = plt.figure(figsize=(12, 9), dpi=300.)
 ax = plt.axes(projection=crs.PlateCarree())
 
 # Add country borders and coastlines.
-countries = NaturalEarthFeature(category="cultural", scale="50m",
-                                facecolor="none",
-                                name="admin_0_countries")
+countries = NaturalEarthFeature(category='cultural', scale='50m',
+                                facecolor='none',
+                                name='admin_0_countries')
 ax.add_feature(countries, linewidth=.5, edgecolor="black")
 ax.coastlines('50m', linewidth=0.8)
 
@@ -112,7 +111,7 @@ plot = div850.plot(levels=np.arange(-1.e-4, 1.e-4, 0.2e-5),
 ax.set_extent([-180., -150., 0., 20.], crs=crs.PlateCarree())
 
 # Add latitude/longitude gridlines.
-gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
+gridlines = ax.gridlines(color='grey', linestyle='dotted', draw_labels=True)
 gridlines.xlabels_top = False
 gridlines.ylabels_right = False
 gridlines.xlocator = mticker.FixedLocator(np.arange(-180., 149., 5.))
@@ -156,9 +155,9 @@ fig = plt.figure(figsize=(12, 9), dpi=300.)
 ax = plt.axes(projection=crs.PlateCarree())
 
 # Add country borders and coastlines.
-countries = NaturalEarthFeature(category="cultural", scale="50m",
-                                facecolor="none",
-                                name="admin_0_countries")
+countries = NaturalEarthFeature(category='cultural', scale='50m',
+                                facecolor='none',
+                                name='admin_0_countries')
 ax.add_feature(countries, linewidth=.5, edgecolor="black")
 ax.coastlines('50m', linewidth=0.8)
 
@@ -174,7 +173,7 @@ plot = nd_spd.plot(levels=np.arange(0., 13., 1.),
 ax.set_extent([-180., -140., 0., 30.], crs=crs.PlateCarree())
 
 # Add latitude/longitude gridlines.
-gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
+gridlines = ax.gridlines(color='grey', linestyle='dotted', draw_labels=True)
 gridlines.xlabels_top = False
 gridlines.ylabels_right = False
 gridlines.xlocator = mticker.FixedLocator(np.arange(-180., 139., 5.))
@@ -198,10 +197,10 @@ uchi, vchi = mpcalc.divergent_wind_from_inversion(umask, vmask, divmask, dx, dy,
 ax = plt.axes(projection=crs.PlateCarree())
 
 # Add country borders and coastlines.
-countries = NaturalEarthFeature(category="cultural", scale="50m",
-                                facecolor="none",
+countries = NaturalEarthFeature(category='cultural', scale='50m',
+                                facecolor='none',
                                 name="admin_0_countries")
-ax.add_feature(countries, linewidth=.5, edgecolor="black")
+ax.add_feature(countries, linewidth=.5, edgecolor='black')
 ax.coastlines('50m', linewidth=0.8)
 
 # Compute the magnitude of the non-divergent component of the 850 hPa wind.
@@ -216,7 +215,7 @@ plot = nd_spd.plot(levels=np.arange(0., 13., 1.),
 ax.set_extent([-180., -140., 0., 30.], crs=crs.PlateCarree())
 
 # Add latitude/longitude gridlines.
-gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
+gridlines = ax.gridlines(color='grey', linestyle='dotted', draw_labels=True)
 gridlines.top_labels = False
 gridlines.right_labels = False
 gridlines.xlocator = mticker.FixedLocator(np.arange(-180., 139., 5.))
@@ -227,6 +226,6 @@ gridlines.xformatter = LONGITUDE_FORMATTER
 gridlines.yformatter = LATITUDE_FORMATTER
 
 # Add a plot title, then show the image.
-plt.title("850 hPa divergent wind magnitude due to Dora at 1200 UTC 9 August 2023")
+plt.title('850 hPa divergent wind magnitude due to Dora at 1200 UTC 9 August 2023')
 plt.savefig('irrotational_winds.png')
 plt.show()
