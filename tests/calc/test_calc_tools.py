@@ -1568,9 +1568,9 @@ def test_bounding_box_mask():
     temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
-    pres = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
+    press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
             '200', '150', '100', '70', '50', '30', '20', '10']
-    level = np.array(pres)
+    level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
@@ -1596,9 +1596,9 @@ def test_find_bounding_box_indices():
     temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
-    pres = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
+    press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
             '200', '150', '100', '70', '50', '30', '20', '10']
-    level = np.array(pres)
+    level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
@@ -1626,9 +1626,9 @@ def test_get_vectorized_array_indices():
     temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
-    pres = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
+    press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
             '200', '150', '100', '70', '50', '30', '20', '10']
-    level = np.array(pres)
+    level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
