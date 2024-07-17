@@ -98,7 +98,7 @@ ax = plt.axes(projection=crs.PlateCarree())
 countries = NaturalEarthFeature(category='cultural', scale='50m',
                                 facecolor='none',
                                 name='admin_0_countries')
-ax.add_feature(countries, linewidth=.5, edgecolor="black")
+ax.add_feature(countries, linewidth=.5, edgecolor='black')
 ax.coastlines('50m', linewidth=0.8)
 
 # Plot the 850 hPa divergence using xarray's plot functionality.
@@ -122,7 +122,7 @@ gridlines.xformatter = LONGITUDE_FORMATTER
 gridlines.yformatter = LATITUDE_FORMATTER
 
 # Add a plot title, then show the image.
-plt.title("GFS 0-h 850 hPa divergence (x$10^{-5} s^{-1}$) at 1200 UTC 9 August 2023")
+plt.title('GFS 0-h 850 hPa divergence (x$10^{-5} s^{-1}$) at 1200 UTC 9 August 2023')
 plt.savefig('div.png')
 plt.show()
 
@@ -158,7 +158,7 @@ ax = plt.axes(projection=crs.PlateCarree())
 countries = NaturalEarthFeature(category='cultural', scale='50m',
                                 facecolor='none',
                                 name='admin_0_countries')
-ax.add_feature(countries, linewidth=.5, edgecolor="black")
+ax.add_feature(countries, linewidth=.5, edgecolor='black')
 ax.coastlines('50m', linewidth=0.8)
 
 # Compute the magnitude of the non-divergent component of the 850 hPa wind.
@@ -199,7 +199,7 @@ ax = plt.axes(projection=crs.PlateCarree())
 # Add country borders and coastlines.
 countries = NaturalEarthFeature(category='cultural', scale='50m',
                                 facecolor='none',
-                                name="admin_0_countries")
+                                name='admin_0_countries')
 ax.add_feature(countries, linewidth=.5, edgecolor='black')
 ax.coastlines('50m', linewidth=0.8)
 
