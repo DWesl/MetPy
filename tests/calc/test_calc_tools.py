@@ -1565,11 +1565,12 @@ def test_vector_derivative_return_subset(return_only, length):
 
 def test_bounding_box_mask():
     """ Test the mask of a bounding box. """
-    temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
+    rng = np.random.default_rng()
+    temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
     press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
-            '200', '150', '100', '70', '50', '30', '20', '10']
+             '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
@@ -1593,11 +1594,12 @@ def test_bounding_box_mask():
 
 def test_find_bounding_box_indices():
     """Tests the bounding box indices for 2 different cases.  """
-    temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
+    rng = np.random.default_rng()
+    temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
     press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
-            '200', '150', '100', '70', '50', '30', '20', '10']
+             '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
@@ -1623,11 +1625,12 @@ def test_find_bounding_box_indices():
 
 def test_get_vectorized_array_indices():
     """Tests the vectorized array indices for two different bounding boxes.  """
-    temperature = 273 + 20 * np.random.random([4, 17, 73, 144])
+    rng = np.random.default_rng()
+    temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
     longitude = np.linspace(0., 360., 144, endpoint=False)
     press = ['1000', '925', '850', '700', '600', '500', '400', '300', '250',
-            '200', '150', '100', '70', '50', '30', '20', '10']
+             '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
     time = np.empty((4))
