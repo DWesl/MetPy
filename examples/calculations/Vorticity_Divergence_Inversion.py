@@ -11,7 +11,6 @@ Use `metpy.calc.vorticity`.
 This example demonstrates the calculation of reconstructed wind field for
 cyclone dora and plotting using matplotlib.
 """
-import os.path
 import xarray as xr
 import numpy as np
 import metpy.calc as mpcalc
