@@ -1573,7 +1573,7 @@ def test_bounding_box_mask():
              '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
-    time = np.empty((4))
+    time = np.empty(4)
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
     time[1] = np.datetime64(datetime.datetime(2023, 1, 14, 6))
     time[2] = np.datetime64(datetime.datetime(2023, 1, 14, 12))
@@ -1602,7 +1602,7 @@ def test_find_bounding_box_indices():
              '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
-    time = np.empty((4))
+    time = np.empty(4)
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
     time[1] = np.datetime64(datetime.datetime(2023, 1, 14, 6))
     time[2] = np.datetime64(datetime.datetime(2023, 1, 14, 12))
@@ -1633,7 +1633,7 @@ def test_get_vectorized_array_indices():
              '200', '150', '100', '70', '50', '30', '20', '10']
     level = np.array(press)
     level = level.astype(float) * 100
-    time = np.empty((4))
+    time = np.empty(4)
     time[0] = np.datetime64(datetime.datetime(2023, 1, 14, 0))
     time[1] = np.datetime64(datetime.datetime(2023, 1, 14, 6))
     time[2] = np.datetime64(datetime.datetime(2023, 1, 14, 12))
