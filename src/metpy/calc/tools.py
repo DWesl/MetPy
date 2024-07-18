@@ -1982,7 +1982,6 @@ def get_vectorized_array_indices(i_bb_indices):
     """Returns the vectorization indices for  inner for loop in the
     wind field reconstruction method.
     """
-    
     i_x_ll = i_bb_indices.x_ll
     i_x_ur = i_bb_indices.x_ur
     i_y_ll = i_bb_indices.y_ll
