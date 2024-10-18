@@ -1961,8 +1961,8 @@ def bounding_box_mask(data_array, min_lat, max_lat, min_lon, max_lon):
 
 @exporter.export
 def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
-    """Returns the array indices of a  bounding box."""
-    
+    """Return the array indices of a  bounding box."""
+
     @dataclass
     class BoundingBoxIndices:
         x_ll: int = None
@@ -1979,7 +1979,7 @@ def find_bounding_box_indices(data_mask, min_lat, max_lat, min_lon, max_lon):
 
 @exporter.export
 def get_vectorized_array_indices(i_bb_indices):
-    """Returns the vectorization indices for  inner for loop in the
+    """Return the vector indices for inner for loop in the
     wind field reconstruction method.
     """
     i_x_ll = i_bb_indices.x_ll

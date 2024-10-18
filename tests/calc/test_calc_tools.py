@@ -1564,7 +1564,7 @@ def test_vector_derivative_return_subset(return_only, length):
 
 
 def test_bounding_box_mask():
-    """ Test the mask of a bounding box. """
+    """Test the mask of a bounding box."""
     rng = np.random.default_rng()
     temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
@@ -1593,7 +1593,7 @@ def test_bounding_box_mask():
 
 
 def test_find_bounding_box_indices():
-    """Tests the bounding box indices for 2 different cases.  """
+    """Tests the bounding box indices for 2 different cases."""
     rng = np.random.default_rng()
     temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
@@ -1624,7 +1624,7 @@ def test_find_bounding_box_indices():
 
 
 def test_get_vectorized_array_indices():
-    """Tests the vectorized array indices for two different bounding boxes.  """
+    """Tests the vectorized array indices for two different bounding boxes."""
     rng = np.random.default_rng()
     temperature = 273 + 20 * rng.random(size=(4, 17, 73, 144))
     latitude = np.linspace(-90., 90., 73)
